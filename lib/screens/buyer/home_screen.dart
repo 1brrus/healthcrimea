@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/cart_provider.dart';
+import '../../providers/products_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<CartProvider>();
+    final provider = context.watch<ProductsProvider>();
 
     return Scaffold(body: _buildBody(context, provider));
   }
 
-  Widget _buildBody(BuildContext context, CartProvider provider) {
+  Widget _buildBody(BuildContext context, ProductsProvider provider) {
     if (provider.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () => context.read<CartProvider>().fetchItems(),
+              onPressed: () => context.read<ProductsProvider>().fetchProducts(),
               child: const Text('Повторить'),
             ),
           ],

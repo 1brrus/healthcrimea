@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/product.dart';
 
-class CartProvider extends ChangeNotifier {
+class ProductsProvider extends ChangeNotifier {
   List<Product> _items = [];
   bool _isLoading = false;
   String? _errorMessage;
@@ -13,7 +13,7 @@ class CartProvider extends ChangeNotifier {
 
   final _supabase = Supabase.instance.client;
 
-  Future<void> fetchItems() async {
+  Future<void> fetchProducts() async {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
@@ -40,7 +40,7 @@ class CartProvider extends ChangeNotifier {
         'number': number,
       });
 
-      await fetchItems();
+      await fetchProducts();
     } catch (e) {
       _errorMessage = 'Не удалось добавить товар: $e';
       notifyListeners();

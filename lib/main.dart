@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:healthcrimea/screens/buyer/home_screen.dart';
+import 'package:healthcrimea/screens/buyer/main_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:provider/provider.dart';
-import 'providers/cart_provider.dart';
+import 'providers/products_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +17,33 @@ void main() async {
 
   runApp(
     ChangeNotifierProvider(
-      create: (context) => CartProvider()..fetchItems(),
-      child: const MaterialApp(
-        home: HomeScreen(),
-        debugShowCheckedModeBanner: false,
+      create: (context) => ProductsProvider()..fetchProducts(),
+      child: MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFFFFE600),
+            surface: Colors.white,
+            surfaceTint: Colors.transparent,
+          ),
+
+          cardTheme: const CardThemeData(
+            surfaceTintColor: Colors.transparent,
+            color: Colors.white,
+          ),
+
+          bottomSheetTheme: const BottomSheetThemeData(
+            surfaceTintColor: Colors.transparent,
+          ),
+
+          dialogTheme: const DialogThemeData(
+            surfaceTintColor: Colors.transparent,
+          ),
+
+          scaffoldBackgroundColor: const Color(0xFFF5F5F5),
+        ),
+        home: MainScreen(),
       ),
     ),
   );
