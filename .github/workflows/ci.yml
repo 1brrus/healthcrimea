@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +23,8 @@ jobs:
 
       - name: Create .env
         run: |
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
 
       - name: Analyze
         run: flutter analyze
