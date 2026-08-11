@@ -14,11 +14,14 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
-          channel: 'stable'
+          flutter-version: "3.x"
+          channel: "stable"
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Create .env
+        run: |
 
       - name: Analyze
         run: flutter analyze
@@ -34,13 +37,13 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
-          channel: 'stable'
+          flutter-version: "3.x"
+          channel: "stable"
 
       - name: Install dependencies
         run: flutter pub get
